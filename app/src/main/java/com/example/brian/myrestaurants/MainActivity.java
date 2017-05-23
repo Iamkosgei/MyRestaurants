@@ -8,28 +8,29 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import butterknife.ButterKnife;
+import butterknife.BindView;
+
 public class MainActivity extends AppCompatActivity {
-    public static final String TAG = MainActivity.class.getSimpleName();
-    private Button mFindRestaurantsButton;
-    private EditText mLocationEditText;
-    private TextView mAppNameTextView;
+    @BindView(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
+    @BindView(R.id.locationEditText) EditText mLocationEditText;
+    @BindView(R.id.appNameTextView) TextView mAppNameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        mFindRestaurantsButton = (Button) findViewById(R.id.findRestaurantsButton);
-        mLocationEditText = (EditText) findViewById(R.id.locationEditText);
-
-        Typeface ostrichBoldFont = Typeface.createFromAsset(getAssets(), "fonts/OstrichSans-Bold.otf");
+        Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
         Typeface windsongFont = Typeface.createFromAsset(getAssets(), "fonts/Windsong.ttf");
-        mAppNameTextView = (TextView) findViewById(R.id.appNameTextView);
+
         mAppNameTextView.setTypeface(windsongFont);
 
         mFindRestaurantsButton.setOnClickListener(v -> {
             String location = mLocationEditText.getText().toString();
             Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
+
             intent.putExtra("location", location);
             startActivity(intent);
         });

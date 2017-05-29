@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Build;
 import android.widget.TextView;
 
+import com.example.brian.myrestaurants.ui.MainActivity;
+import com.example.brian.myrestaurants.ui.RestaurantsActivity;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,7 +21,7 @@ import static junit.framework.Assert.assertTrue;
 @Config(constants = BuildConfig.class, sdk = Build.VERSION_CODES.LOLLIPOP)
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
-private MainActivity activity;
+    private MainActivity activity;
 
     @Before
     public void setUp() {

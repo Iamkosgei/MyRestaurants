@@ -3,12 +3,15 @@ package com.example.brian.myrestaurants.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.brian.myrestaurants.R;
+import com.example.brian.myrestaurants.adapters.RestaurantListAdapter;
 import com.example.brian.myrestaurants.models.Restaurant;
 import com.example.brian.myrestaurants.services.YelpService;
 
@@ -23,25 +26,14 @@ import okhttp3.Response;
 
 public class RestaurantsActivity extends AppCompatActivity {
     @BindView(R.id.locationTextView) TextView mLocationTextView;
-    @BindView(R.id.listView) ListView mListView;
+    @BindView(R.id.recyclerView)
+    RecyclerView mRecyclerView;
+
+    private static final String TAG = RestaurantsActivity.class.getSimpleName();
+    private RestaurantListAdapter mAdapter;
 
     public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
-    private static final String TAG = RestaurantsActivity.class.getSimpleName();
-    private String[] restaurants = new String[] {
-            "Sweet Hereafter", "Cricket", "Hawthorne Fish House",
-            "Viking Soul Food", "Red Square", "Horse Brass",
-            "Dick's Kitchen", "Taco Bell", "Me Kha Noodle Bar",
-            "La Bonita Taqueria", "Smokehouse Tavern", "Pembiche",
-            "Kay's Bar", "Gnarly Grey", "Slappy Cakes", "Mi Mero Mole"
-    };
 
-    private String[] cuisines = new String[] {
-            "Vegan Food", "Breakfast", "Fishs Dishs",
-            "Scandinavian", "Coffee", "English Food",
-            "Burgers", "Fast Food", "Noodle Soups",
-            "Mexican", "BBQ", "Cuban",
-            "Bar Food", "Sports Bar", "Breakfast", "Mexican"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,25 +61,13 @@ public class RestaurantsActivity extends AppCompatActivity {
                 mRestaurants = yelpService.processResults(response);
 
                 RestaurantsActivity.this.runOnUiThread(() -> {
-                    String[] restaurantNames = new String[mRestaurants.size()];
+                    mAdapter = new RestaurantListAdapter(getApplicationContext(), mRestaurants);
 
-                    for (int i = 0; i < restaurantNames.length; i++) {
-                        restaurantNames[i] = mRestaurants.get(i).getmName();
-                    }
-
-                    ArrayAdapter adapter = new ArrayAdapter(RestaurantsActivity.this,
-                            android.R.layout.simple_list_item_1, restaurantNames);
-                    mListView.setAdapter(adapter);
-
-                    for (Restaurant restaurant : mRestaurants) {
-                        Log.d(TAG, "Name: " + restaurant.getmName());
-                        Log.d(TAG, "Phone: " + restaurant.getmPhone());
-                        Log.d(TAG, "Website: " + restaurant.getmWebsite());
-                        Log.d(TAG, "Image url: " + restaurant.getmImageUrl());
-                        Log.d(TAG, "Rating: " + Double.toString(restaurant.getmRating()));
-                        Log.d(TAG, "Address: " + android.text.TextUtils.join(", ", restaurant.getmAddress()));
-                        Log.d(TAG, "Categories: " + restaurant.getmCategories().toString());
-                    }
+                    mRecyclerView.setAdapter(mAdapter);
+                    RecyclerView.LayoutManager layoutManager
+                            = new LinearLayoutManager(RestaurantsActivity.this);
+                    mRecyclerView.setLayoutManager(layoutManager);
+                    mRecyclerView.setHasFixedSize(true);
                 });
             }
         });

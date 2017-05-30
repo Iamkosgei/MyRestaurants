@@ -6,20 +6,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.brian.myrestaurants.R;
 import com.example.brian.myrestaurants.models.Restaurant;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
-/**
- * Created by brian on 5/29/17.
- */
 
 public class RestaurantListAdapter
         extends RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder> {
@@ -59,6 +57,7 @@ public class RestaurantListAdapter
         @BindView(R.id.ratingTextView)
         TextView mRatingTextView;
 
+
         private Context mContext;
 
         public RestaurantViewHolder(View itemView) {
@@ -70,9 +69,16 @@ public class RestaurantListAdapter
         public void bindRestaurant(Restaurant restaurant) {
             mNameTextView.setText(restaurant.getmName());
             mCategoryTextView.setText(restaurant.getmCategories().get(0));
-            mRatingTextView.setText(String.format("Rating: %.1f/5", restaurant.getmRating()));
+            mRatingTextView.setText(String.format(
+                    Locale.getDefault(), "Rating: %.1f/5", restaurant.getmRating()));
+
+            if (!(restaurant.getmImageUrl().isEmpty())) {
+                Picasso.with(mContext).load(restaurant.getmImageUrl())
+                        .fit()
+                        .placeholder(R.drawable.restaurant_placeholder)
+                        .into(mRestaurantImageView);
+            }
+
         }
-
-
     }
 }

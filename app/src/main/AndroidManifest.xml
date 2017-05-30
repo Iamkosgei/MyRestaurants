@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.brian.myrestaurants">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -20,12 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.RestaurantsActivity">
+        <activity android:name=".ui.RestaurantListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.brian.myrestaurants.ui.MainActivity" >
-            </meta-data>
+                android:value="com.example.brian.myrestaurants.ui.MainActivity"></meta-data>
         </activity>
+        <activity android:name=".ui.RestaurantDetail"></activity>
     </application>
 
 </manifest>

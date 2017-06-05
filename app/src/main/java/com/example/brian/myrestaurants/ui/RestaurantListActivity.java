@@ -1,6 +1,8 @@
 package com.example.brian.myrestaurants.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.brian.myrestaurants.Constants;
 import com.example.brian.myrestaurants.R;
 import com.example.brian.myrestaurants.adapters.RestaurantListAdapter;
 import com.example.brian.myrestaurants.models.Restaurant;
@@ -29,6 +32,9 @@ public class RestaurantListActivity extends AppCompatActivity {
 
     private static final String TAG = RestaurantListActivity.class.getSimpleName();
     private RestaurantListAdapter mAdapter;
+    private SharedPreferences mSharedPreferences;
+    private String mRecentAddress;
+
 
     public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
 
@@ -41,9 +47,17 @@ public class RestaurantListActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
-        Log.d(TAG, "zipCode: " + location);
-        getRestaurants(location);
-        mLocationTextView.setText("Here are all the restaurants near: " + location);
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+
+        if (location.isEmpty() && mRecentAddress != null) {
+            getRestaurants(mRecentAddress);
+            mLocationTextView.setText("Here are all the restaurants near: " + mRecentAddress);
+        } else {
+            getRestaurants(location);
+            mLocationTextView.setText("Here are all the restaurants near: " + location);
+        }
     }
 
     private void getRestaurants(String location) {

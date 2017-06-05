@@ -25,7 +25,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.brian.myrestaurants.ui.MainActivity"></meta-data>
         </activity>
-        <activity android:name=".ui.RestaurantDetail"></activity>
+        <activity android:name=".ui.RestaurantDetailActivity"></activity>
     </application>
 
 </manifest>

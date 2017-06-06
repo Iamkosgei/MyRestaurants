@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.example.brian.myrestaurants.ui.CreateAccountActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Account"
+        android:textColor="@color/colorIcons"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:id="@+id/createAccountTitleTextView"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/createAccountTitleTextView"
+        android:orientation="vertical"
+        android:padding="30dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+
+        <EditText 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:padding="10dp"
+            android:textColor="@color/colorIcons"
+            android:textColorHint="@color/colorDivider"
+            android:textSize="20sp"
+            android:id="@+id/nameEditText"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:inputType="textEmailAddress"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorIcons"
+            android:textColorHint="@color/colorDivider"
+            android:textSize="20sp"
+            android:id="@+id/emailEditText"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorIcons"
+            android:textColorHint="@color/colorDivider"
+            android:textSize="20sp"
+            android:id="@+id/passwordEditText"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:padding="10dp"
+            android:layout_marginBottom="10dp"
+            android:textColor="@color/colorIcons"
+            android:textColorHint="@color/colorDivider"
+            android:textSize="20sp"
+            android:id="@+id/confirmPasswordEditText"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:background="@color/colorPrimaryLight"
+            android:layout_marginTop="15dp"
+            android:text="Sign up"
+            android:textColor="@color/colorPrimaryText"
+            android:id="@+id/createUserButton"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/colorIcons"
+            android:textStyle="bold"
+            android:textSize="15sp"
+            android:text="Already have an account? Log in here!"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/loginTextview" />
+        
+    </LinearLayout>
+
+</RelativeLayout>

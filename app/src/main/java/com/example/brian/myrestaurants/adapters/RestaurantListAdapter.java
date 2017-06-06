@@ -54,7 +54,7 @@ public class RestaurantListAdapter
             implements View.OnClickListener {
         @BindView(R.id.restaurantImageView)
         ImageView mRestaurantImageView;
-        @BindView(R.id.restaurantNameTextview)
+        @BindView(R.id.restaurantNameTextView)
         TextView mNameTextView;
         @BindView(R.id.categoryTextView)
         TextView mCategoryTextView;
@@ -81,14 +81,15 @@ public class RestaurantListAdapter
         }
 
         public void bindRestaurant(Restaurant restaurant) {
-            mNameTextView.setText(restaurant.getmName());
-            mCategoryTextView.setText(restaurant.getmCategories().get(0));
+            mNameTextView.setText(restaurant.getName());
+            mCategoryTextView.setText(restaurant.getCategories().get(0));
             mRatingTextView.setText(String.format(
-                    Locale.getDefault(), "Rating: %.1f/5", restaurant.getmRating()));
+                    Locale.getDefault(), "Rating: %.1f/5", restaurant.getRating()));
 
-            if (!(restaurant.getmImageUrl().isEmpty())) {
-                Picasso.with(mContext).load(restaurant.getmImageUrl())
+            if (!(restaurant.getImageUrl().isEmpty())) {
+                Picasso.with(mContext).load(restaurant.getImageUrl())
                         .fit()
+                        .centerCrop()
                         .placeholder(R.drawable.restaurant_placeholder)
                         .into(mRestaurantImageView);
             }

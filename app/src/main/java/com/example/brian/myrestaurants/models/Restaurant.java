@@ -3,68 +3,69 @@ package com.example.brian.myrestaurants.models;
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Parcel
 public class Restaurant {
-    String mName;
-    String mPhone;
-    String mWebsite;
-    double mRating;
-    String mImageUrl;
-    ArrayList<String> mAddress = new ArrayList<>();
-    double mLatitude;
-    double mLongitude;
-    ArrayList<String> mCategories = new ArrayList<>();
+    String name;
+    String phone;
+    String website;
+    double rating;
+    String imageUrl;
+    List<String> address = new ArrayList<>();
+    double latitude;
+    double longitude;
+    List<String> categories = new ArrayList<>();
     
     public Restaurant() {}
 
     public Restaurant(String name, String phone, String website,
                       double rating, String imageUrl, ArrayList<String> address,
                       double latitude, double longitude, ArrayList<String> categories) {
-        this.mName = name;
-        this.mPhone = phone;
-        this.mWebsite = website;
-        this.mRating = rating;
-        this.mImageUrl = imageUrl;
-        this.mAddress = address;
-        this.mLatitude = latitude;
-        this.mLongitude = longitude;
-        this.mCategories = categories;
+        this.name = name;
+        this.phone = phone;
+        this.website = website;
+        this.rating = rating;
+        this.imageUrl = imageUrl;
+        this.address = address;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.categories = categories;
     }
 
-    public String getmName() {
-        return mName;
+    public String getName() {
+        return name;
     }
 
-    public String getmPhone() {
-        return mPhone;
+    public String getPhone() {
+        return phone;
     }
 
-    public String getmWebsite() {
-        return mWebsite;
+    public String getWebsite() {
+        return website;
     }
 
-    public double getmRating() {
-        return mRating;
+    public double getRating() {
+        return rating;
     }
 
-    public String getmImageUrl() {
-        return mImageUrl;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
-    public ArrayList<String> getmAddress() {
-        return mAddress;
+    public List<String> getAddress() {
+        return address;
     }
 
-    public double getmLatitude() {
-        return mLatitude;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public double getmLongitude() {
-        return mLongitude;
+    public double getLongitude() {
+        return longitude;
     }
 
-    public ArrayList<String> getmCategories() {
-        return mCategories;
+    public List<String> getCategories() {
+        return categories;
     }
 }

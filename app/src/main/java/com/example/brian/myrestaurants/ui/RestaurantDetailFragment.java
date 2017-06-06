@@ -11,9 +11,13 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.brian.myrestaurants.Constants;
 import com.example.brian.myrestaurants.R;
 import com.example.brian.myrestaurants.models.Restaurant;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -64,8 +68,8 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         View view = inflater.inflate(R.layout.fragment_restaurant_detail, container, false);
         ButterKnife.bind(this, view);
 
-        if (!(mRestaurant.getmImageUrl().isEmpty())) {
-            Picasso.with(view.getContext()).load(mRestaurant.getmImageUrl())
+        if (!(mRestaurant.getImageUrl().isEmpty())) {
+            Picasso.with(view.getContext()).load(mRestaurant.getImageUrl())
                     .fit()
                     .centerCrop()
                     .placeholder(R.drawable.restaurant_placeholder)
@@ -73,15 +77,16 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         }
 
 
-        mNameLabel.setText(mRestaurant.getmName());
-        mCategoriesLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getmCategories()));
-        mRatingLabel.setText(String.format(Locale.getDefault(), "%.2f/5", mRestaurant.getmRating()));
-        mPhoneLabel.setText(mRestaurant.getmPhone());
-        mAddressLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getmAddress()));
+        mNameLabel.setText(mRestaurant.getName());
+        mCategoriesLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getCategories()));
+        mRatingLabel.setText(String.format(Locale.getDefault(), "%.2f/5", mRestaurant.getRating()));
+        mPhoneLabel.setText(mRestaurant.getPhone());
+        mAddressLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getAddress()));
 
         mWebsiteLabel.setOnClickListener(this);
         mAddressLabel.setOnClickListener(this);
         mPhoneLabel.setOnClickListener(this);
+        mSaveRestaurantsButton.setOnClickListener(this);
 
         return view;
     }
@@ -89,22 +94,29 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
     @Override
     public void onClick(View v) {
         if (v == mWebsiteLabel) {
-            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mRestaurant.getmWebsite()));
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mRestaurant.getWebsite()));
             startActivity(webIntent);
         }
 
         if (v == mPhoneLabel) {
             Intent phoneIntent = new Intent(Intent.ACTION_DIAL,
-                                            Uri.parse("tel:" + mRestaurant.getmPhone()));
+                                            Uri.parse("tel:" + mRestaurant.getPhone()));
             startActivity(phoneIntent);
         }
 
         if (v == mAddressLabel) {
             Intent mapIntent = new Intent(Intent.ACTION_VIEW,
-                                            Uri.parse("geo:" + mRestaurant.getmLatitude()
-                                                    + "," + mRestaurant.getmLongitude()
-                                                    + "?q=(" + mRestaurant.getmName() + ")" ));
+                                            Uri.parse("geo:" + mRestaurant.getLatitude()
+                                                    + "," + mRestaurant.getLongitude()
+                                                    + "?q=(" + mRestaurant.getName() + ")" ));
             startActivity(mapIntent);
+        }
+
+        if (v == mSaveRestaurantsButton) {
+            DatabaseReference restaurantRef = FirebaseDatabase.getInstance()
+                    .getReference(Constants.FIREBASE_CHILD_RESTAURANTS);
+            restaurantRef.push().setValue(mRestaurant);
+            Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
 
     }

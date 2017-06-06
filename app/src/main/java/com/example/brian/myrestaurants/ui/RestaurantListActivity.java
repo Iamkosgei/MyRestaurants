@@ -30,10 +30,9 @@ public class RestaurantListActivity extends AppCompatActivity {
     @BindView(R.id.recyclerView)
     RecyclerView mRecyclerView;
 
-    private static final String TAG = RestaurantListActivity.class.getSimpleName();
     private RestaurantListAdapter mAdapter;
-    private SharedPreferences mSharedPreferences;
-    private String mRecentAddress;
+//    private SharedPreferences mSharedPreferences;
+//    private String mRecentAddress;
 
 
     public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
@@ -48,16 +47,16 @@ public class RestaurantListActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
 
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
+//        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+//        mRecentAddress = mSharedPreferences.getString(Constants.PREFERENCES_LOCATION_KEY, null);
 
-        if (location.isEmpty() && mRecentAddress != null) {
-            getRestaurants(mRecentAddress);
-            mLocationTextView.setText("Here are all the restaurants near: " + mRecentAddress);
-        } else {
+//        if (location.isEmpty() && mRecentAddress != null) {
+//            getRestaurants(mRecentAddress);
+//            mLocationTextView.setText("Here are all the restaurants near: " + mRecentAddress);
+//        } else {
             getRestaurants(location);
             mLocationTextView.setText("Here are all the restaurants near: " + location);
-        }
+//        }
     }
 
     private void getRestaurants(String location) {

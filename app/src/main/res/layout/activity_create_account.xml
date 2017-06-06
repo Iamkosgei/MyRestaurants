@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Create Account"
+        android:text="@string/create_account"
         android:textColor="@color/colorIcons"
         android:textSize="30sp"
         android:textStyle="bold"
@@ -30,7 +30,7 @@
         <EditText 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Name"
+            android:hint="@string/name"
             android:padding="10dp"
             android:textColor="@color/colorIcons"
             android:textColorHint="@color/colorDivider"
@@ -40,7 +40,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="10dp"
             android:layout_marginBottom="10dp"
@@ -52,7 +52,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:padding="10dp"
             android:layout_marginBottom="10dp"
@@ -64,7 +64,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
+            android:hint="@string/confirm_password"
             android:inputType="textPassword"
             android:padding="10dp"
             android:layout_marginBottom="10dp"
@@ -79,7 +79,7 @@
             android:padding="10dp"
             android:background="@color/colorPrimaryLight"
             android:layout_marginTop="15dp"
-            android:text="Sign up"
+            android:text="@string/sign_up"
             android:textColor="@color/colorPrimaryText"
             android:id="@+id/createUserButton"/>
 
@@ -90,9 +90,9 @@
             android:textColor="@color/colorIcons"
             android:textStyle="bold"
             android:textSize="15sp"
-            android:text="Already have an account? Log in here!"
+            android:text="@string/link_to_login"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/loginTextview" />
+            android:id="@+id/loginTextView" />
         
     </LinearLayout>
 

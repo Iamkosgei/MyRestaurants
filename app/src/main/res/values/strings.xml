@@ -1,4 +1,24 @@
 <resources>
     <string name="app_name">MyRestaurants</string>
     <string name="restaurant_name_placeholder">Restaurant Name</string>
+    <string name="rating_placeholder">4.5/5</string>
+    <string name="cuisine_placeholder">Brunch, American</string>
+    <string name="view_on_yelp">View on Yelp</string>
+    <string name="phone_placeholder">(503) 223&#8211;1282</string>
+    <string name="address_placeholder">123 SW Best Ever Ave. Portland, Oregon, 97222</string>
+    <string name="save_restaurant_button">Save Restaurant</string>
+    <string name="enter_zip_code">Enter Zip Code</string>
+    <string name="find_restaurants">Find Restaurants</string>
+    <string name="my_saved_restaurants">My Saved Restaurants</string>
+    <string name="restaurant_image_description">Restaurant Image</string>
+    <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="create_account">Create Account</string>
+    <string name="link_to_registration">Don\'t have an account? Sign up here!</string>
+    <string name="link_to_login">Already have an account? Log in here!</string>
+    <string name="sign_up">Sign up</string>
+    <string name="restaurants_near">Here are all the restaurants near: %1$s</string>
 </resources>

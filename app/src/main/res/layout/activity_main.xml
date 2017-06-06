@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="19dp"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toTopOf="@+id/findRestaurantsButton"
         app:layout_constraintHorizontal_bias="0.0"
@@ -24,7 +24,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="MyRestaurants"
+        android:text="@string/app_name"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -44,7 +44,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:text="Find Restaurants"
+        android:text="@string/find_restaurants"
         android:id="@+id/findRestaurantsButton"
         app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginBottom="72dp" />
@@ -55,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:background="@color/colorPrimaryDark"
-        android:text="My Saved Restaurants"
+        android:text="@string/my_saved_restaurants"
         android:textColor="@color/colorIcons"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -75,7 +75,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:ems="10"
-        android:hint="Enter Zip Code"
+        android:hint="@string/enter_zip_code"
         android:inputType="textPersonName"
         android:textColor="@color/colorIcons"
         android:textColorHint="@color/colorIcons"

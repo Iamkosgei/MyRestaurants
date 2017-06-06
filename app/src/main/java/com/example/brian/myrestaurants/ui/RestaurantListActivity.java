@@ -2,6 +2,7 @@ package com.example.brian.myrestaurants.ui;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,6 +19,7 @@ import com.example.brian.myrestaurants.services.YelpService;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -55,7 +57,8 @@ public class RestaurantListActivity extends AppCompatActivity {
 //            mLocationTextView.setText("Here are all the restaurants near: " + mRecentAddress);
 //        } else {
             getRestaurants(location);
-            mLocationTextView.setText("Here are all the restaurants near: " + location);
+        Resources res = getResources();
+            mLocationTextView.setText(res.getString(R.string.restaurants_near, location));
 //        }
     }
 

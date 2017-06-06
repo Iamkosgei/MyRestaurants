@@ -2,13 +2,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryLight"
     tools:context="com.example.brian.myrestaurants.ui.RestaurantDetailFragment">
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimaryLight">
+        android:layout_height="match_parent">
         
         <ImageView
             android:layout_width="match_parent"
@@ -36,7 +36,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="4.5/5"
+                android:text="@string/rating_placeholder"
                 android:layout_alignTop="@id/restaurantNameTextView"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -52,7 +52,7 @@
                 android:layout_alignParentStart="true"
                 android:textColor="@color/colorSecondaryText"
                 android:textStyle="italic"
-                android:text="Brunch, American"
+                android:text="@string/cuisine_placeholder"
                 android:id="@+id/cuisineTextView"/>
 
         </RelativeLayout>
@@ -72,54 +72,54 @@
                 android:paddingTop="5dp"
                 android:paddingRight="30dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
-                android:drawableLeft="@drawable/ic_exit_to_app_black_24dp"
-                android:drawablePadding="4dp"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:text="View on Yelp"
-                android:gravity="center"
-                android:id="@+id/websiteTextView" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableStart="@drawable/ic_exit_to_app_black_24dp"
+                    android:drawableLeft="@drawable/ic_exit_to_app_black_24dp"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:text="@string/view_on_yelp"
+                    android:gravity="center"
+                    android:id="@+id/websiteTextView" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:drawableLeft="@drawable/ic_local_phone_black_24dp"
-                android:drawableStart="@drawable/ic_local_phone_black_24dp"
-                android:drawablePadding="4dp"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:text="(503) 223-1282"
-                android:gravity="center"
-                android:id="@+id/phoneTextView"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/ic_local_phone_black_24dp"
+                    android:drawableStart="@drawable/ic_local_phone_black_24dp"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:text="@string/phone_placeholder"
+                    android:gravity="center"
+                    android:id="@+id/phoneTextView"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:drawableLeft="@drawable/ic_map_black_24dp"
-                android:drawableStart="@drawable/ic_map_black_24dp"
-                android:drawablePadding="4dp"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="13sp"
-                android:textStyle="bold"
-                android:text="123 SW Best Ever Ave. Portland, Oregon, 97222"
-                android:gravity="center_vertical"
-                android:id="@+id/addressTextView" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:drawableLeft="@drawable/ic_map_black_24dp"
+                    android:drawableStart="@drawable/ic_map_black_24dp"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:text="@string/address_placeholder"
+                    android:gravity="center_vertical"
+                    android:id="@+id/addressTextView" />
 
             </LinearLayout>
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Save Restaurant"
+                android:text="@string/save_restaurant_button"
                 android:layout_alignParentBottom="true"
                 android:background="@color/colorAccent"
                 android:textColor="@color/colorIcons"

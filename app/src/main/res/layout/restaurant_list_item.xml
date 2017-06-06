@@ -9,6 +9,7 @@
         android:layout_width="130dp"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
+        android:contentDescription="@string/restaurant_image_description"
         android:id="@+id/restaurantImageView" />
 
     <LinearLayout
@@ -22,19 +23,16 @@
             android:id="@+id/restaurantNameTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Restaurant Name"
+            android:text="@string/restaurant_name_placeholder"
             android:textColor="@color/colorPrimary"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/categoryTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@id/restaurantNameTextView"
-            android:text="One Cuisine Type"
+            android:text="@string/cuisine_placeholder"
             android:textStyle="italic" />
 
         <RelativeLayout
@@ -47,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:text="Rating"
+                android:layout_alignParentEnd="true"
+                android:text="@string/rating_placeholder"
                 android:textColor="@color/colorAccent" />
         </RelativeLayout>
     </LinearLayout>

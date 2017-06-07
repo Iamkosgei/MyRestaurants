@@ -47,7 +47,7 @@ public class YelpService {
             String jsonData = response.body().string();
 
             if (response.isSuccessful()) {
-
+                // The response JSON is an array of business objects within an object so we need to get that array
                 JSONObject yelpJSON = new JSONObject(jsonData);
                 JSONArray businessesJSON = yelpJSON.getJSONArray("businesses");
 

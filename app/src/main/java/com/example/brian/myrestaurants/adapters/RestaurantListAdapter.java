@@ -17,6 +17,7 @@ import com.squareup.picasso.Picasso;
 import org.parceler.Parcels;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.BindView;
@@ -24,10 +25,10 @@ import butterknife.ButterKnife;
 
 public class RestaurantListAdapter
         extends RecyclerView.Adapter<RestaurantListAdapter.RestaurantViewHolder> {
-    private ArrayList<Restaurant> mRestaurants = new ArrayList<>();
+    private List<Restaurant> mRestaurants = new ArrayList<>();
     private Context mContext;
 
-    public RestaurantListAdapter(Context context, ArrayList<Restaurant> restaurants) {
+    public RestaurantListAdapter(Context context, List<Restaurant> restaurants) {
         mContext = context;
         mRestaurants = restaurants;
     }

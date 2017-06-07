@@ -81,7 +81,7 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         mCategoriesLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getCategories()));
         mRatingLabel.setText(String.format(Locale.getDefault(), "%.2f/5", mRestaurant.getRating()));
         mPhoneLabel.setText(mRestaurant.getPhone());
-        mAddressLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getAddress()));
+        mAddressLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getLocation().getDisplayAddress()));
 
         mWebsiteLabel.setOnClickListener(this);
         mAddressLabel.setOnClickListener(this);
@@ -106,8 +106,8 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
 
         if (v == mAddressLabel) {
             Intent mapIntent = new Intent(Intent.ACTION_VIEW,
-                                            Uri.parse("geo:" + mRestaurant.getLatitude()
-                                                    + "," + mRestaurant.getLongitude()
+                                            Uri.parse("geo:" + mRestaurant.getCoordinates().getLatitude()
+                                                    + "," + mRestaurant.getCoordinates().getLongitude()
                                                     + "?q=(" + mRestaurant.getName() + ")" ));
             startActivity(mapIntent);
         }

@@ -1,8 +1,6 @@
 package com.example.brian.myrestaurants.ui;
 
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.preference.PreferenceManager;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -10,11 +8,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.example.brian.myrestaurants.Constants;
 import com.example.brian.myrestaurants.R;
@@ -24,7 +20,7 @@ import com.example.brian.myrestaurants.services.YelpService;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -40,7 +36,7 @@ public class RestaurantListActivity extends AppCompatActivity {
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor mEditor;
 
-    public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
+    public List<Restaurant> mRestaurants = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

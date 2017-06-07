@@ -2,13 +2,18 @@ package com.example.brian.myrestaurants.services;
 
 import com.example.brian.myrestaurants.Constants;
 import com.example.brian.myrestaurants.models.Restaurant;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -35,46 +40,22 @@ public class YelpService {
         call.enqueue(callback);
     }
 
-    public ArrayList<Restaurant> processResults(Response response) {
-        ArrayList<Restaurant> restaurants = new ArrayList<>();
+    public List<Restaurant> processResults(Response response) {
+        List<Restaurant> restaurants = new ArrayList<>();
 
         try {
             String jsonData = response.body().string();
 
             if (response.isSuccessful()) {
+
                 JSONObject yelpJSON = new JSONObject(jsonData);
                 JSONArray businessesJSON = yelpJSON.getJSONArray("businesses");
-                for (int i = 0; i < businessesJSON.length(); i++) {
-                    JSONObject restaurantJSON = businessesJSON.getJSONObject(i);
-                    String name = restaurantJSON.getString("name");
-                    String phone = restaurantJSON.optString("display_phone", "Phone not available");
-                    String website = restaurantJSON.getString("url");
-                    double rating = restaurantJSON.getDouble("rating");
-                    String imageUrl = restaurantJSON.getString("image_url");
-                    double latitude = restaurantJSON.getJSONObject("coordinates")
-                            .getDouble("latitude");
-                    double longitude = restaurantJSON.getJSONObject("coordinates")
-                            .getDouble("longitude");
 
-                    ArrayList<String> address = new ArrayList<>();
-                    JSONArray addressJSON = restaurantJSON.getJSONObject("location")
-                            .getJSONArray("display_address");
-                    for (int j = 0; j < addressJSON.length(); j++) {
-                        address.add(addressJSON.get(j).toString());
-                    }
-
-                    ArrayList<String> categories = new ArrayList<>();
-                    JSONArray categoriesJSON = restaurantJSON.getJSONArray("categories");
-                    for (int j = 0; j < categoriesJSON.length(); j++) {
-                        categories.add(categoriesJSON.getJSONObject(j).getString("title"));
-                    }
-
-                    Restaurant restaurant = new Restaurant(name, phone, website, rating, imageUrl,
-                            address, latitude, longitude, categories);
-                    restaurants.add(restaurant);
-                }
+                Type collectionType = new TypeToken<List<Restaurant>>() {}.getType();
+                Gson gson = new GsonBuilder().create();
+                restaurants = gson.fromJson(businessesJSON.toString(), collectionType);
             }
-        } catch (JSONException | IOException e) {
+        } catch (JSONException | NullPointerException | IOException e) {
             e.printStackTrace();
         }
 

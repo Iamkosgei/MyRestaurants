@@ -12,6 +12,7 @@
     <string name="my_saved_restaurants">My Saved Restaurants</string>
     <string name="restaurant_image_description">Restaurant Image</string>
     <string name="login">Login</string>
+    <string name="logout">Logout</string>
     <string name="name">Name</string>
     <string name="email">Email</string>
     <string name="password">Password</string>

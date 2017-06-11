@@ -83,7 +83,7 @@ public class RestaurantListAdapter
 
         public void bindRestaurant(Restaurant restaurant) {
             mNameTextView.setText(restaurant.getName());
-            mCategoryTextView.setText(restaurant.getCategories().get(0));
+            mCategoryTextView.setText(restaurant.getCategories().get(0).getTitle());
             mRatingTextView.setText(String.format(
                     Locale.getDefault(), "Rating: %.1f/5", restaurant.getRating()));
 

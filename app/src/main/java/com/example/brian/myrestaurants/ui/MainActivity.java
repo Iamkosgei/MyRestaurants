@@ -49,14 +49,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ButterKnife.bind(this);
 
         mAuth = FirebaseAuth.getInstance();
-        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
+        mAuthStateListener = firebaseAuth -> {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                if (user != null) {
-                    getSupportActionBar().setTitle("Welcome, " + user.getDisplayName() + "!");
-                }
+            if (user != null) {
+                getSupportActionBar().setTitle("Welcome, " + user.getDisplayName() + "!");
             }
         };
 

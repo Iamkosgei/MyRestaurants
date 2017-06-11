@@ -16,6 +16,8 @@ import android.widget.Toast;
 import com.example.brian.myrestaurants.Constants;
 import com.example.brian.myrestaurants.R;
 import com.example.brian.myrestaurants.models.Restaurant;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
@@ -28,7 +30,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class RestaurantDetailFragment extends Fragment implements View.OnClickListener {
+public class    RestaurantDetailFragment extends Fragment implements View.OnClickListener {
     @BindView(R.id.restaurantImageView)
     ImageView mImageLabel;
     @BindView(R.id.restaurantNameTextView)
@@ -68,7 +70,7 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         View view = inflater.inflate(R.layout.fragment_restaurant_detail, container, false);
         ButterKnife.bind(this, view);
 
-        if (!(mRestaurant.getImageUrl().isEmpty())) {
+        if (mRestaurant.getImageUrl() != null) {
             Picasso.with(view.getContext()).load(mRestaurant.getImageUrl())
                     .fit()
                     .centerCrop()
@@ -77,11 +79,16 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         }
 
 
-        mNameLabel.setText(mRestaurant.getName());
-        mCategoriesLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getCategories()));
-        mRatingLabel.setText(String.format(Locale.getDefault(), "%.2f/5", mRestaurant.getRating()));
-        mPhoneLabel.setText(mRestaurant.getPhone());
-        mAddressLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getLocation().getDisplayAddress()));
+        if (mRestaurant.getName() != null)
+            mNameLabel.setText(mRestaurant.getName());
+        if (mRestaurant.getCategories() != null)
+            mCategoriesLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getCategories()));
+        if (mRestaurant.getRating() != null)
+            mRatingLabel.setText(String.format(Locale.getDefault(), "%.2f/5", mRestaurant.getRating()));
+        if (mRestaurant.getPhone() != null)
+            mPhoneLabel.setText(mRestaurant.getPhone());
+        if (mRestaurant.getLocation() != null)
+            mAddressLabel.setText(android.text.TextUtils.join(", ", mRestaurant.getLocation().getDisplayAddress()));
 
         mWebsiteLabel.setOnClickListener(this);
         mAddressLabel.setOnClickListener(this);
@@ -113,9 +120,18 @@ public class RestaurantDetailFragment extends Fragment implements View.OnClickLi
         }
 
         if (v == mSaveRestaurantsButton) {
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            String uid = user.getUid();
+
             DatabaseReference restaurantRef = FirebaseDatabase.getInstance()
-                    .getReference(Constants.FIREBASE_CHILD_RESTAURANTS);
-            restaurantRef.push().setValue(mRestaurant);
+                    .getReference(Constants.FIREBASE_CHILD_RESTAURANTS)
+                    .child(uid);
+
+            DatabaseReference pushRef = restaurantRef.push();
+            String pushId = pushRef.getKey();
+            mRestaurant.setPushId(pushId);
+            pushRef.setValue(mRestaurant);
+
             Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
         }
 

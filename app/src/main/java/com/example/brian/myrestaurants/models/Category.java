@@ -34,4 +34,8 @@ public class Category {
         this.title = title;
     }
 
+    @Override
+    public String toString() {
+        return this.getTitle();
+    }
 }

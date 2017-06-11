@@ -1,6 +1,8 @@
 
 package com.example.brian.myrestaurants.models;
 
+import android.annotation.TargetApi;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -58,6 +60,7 @@ public class Restaurant {
     @SerializedName("distance")
     @Expose
     Double distance;
+    private String pushId;
 
     /**
      * No args constructor for use in serialization
@@ -66,25 +69,21 @@ public class Restaurant {
     public Restaurant() {
     }
 
-    /**
-     *
-     * @param transactions
-     * @param phone
-     * @param imageUrl
-     * @param location
-     * @param url
-     * @param displayPhone
-     * @param id
-     * @param distance
-     * @param price
-     * @param name
-     * @param reviewCount
-     * @param categories
-     * @param rating
-     * @param isClosed
-     * @param coordinates
-     */
-    public Restaurant(String id, String name, String imageUrl, Boolean isClosed, String url, Integer reviewCount, List<Category> categories, Double rating, Coordinates coordinates, List<String> transactions, String price, Location location, String phone, String displayPhone, Double distance) {
+    public Restaurant(String id,
+                      String name,
+                      String imageUrl,
+                      Boolean isClosed,
+                      String url,
+                      Integer reviewCount,
+                      List<Category> categories,
+                      Double rating,
+                      Coordinates coordinates,
+                      List<String> transactions,
+                      String price,
+                      Location location,
+                      String phone,
+                      String displayPhone,
+                      Double distance) {
         super();
         this.id = id;
         this.name = name;
@@ -151,15 +150,12 @@ public class Restaurant {
         this.reviewCount = reviewCount;
     }
 
-    public List<String> getCategories() {
-//         return categories.stream().map(Category::getTitle).collect(Collectors.toList());
-        List<String> titles = new ArrayList<>();
-        for (Category category:
-             categories) {
-            titles.add(category.getTitle());
-        }
-
-        return titles;
+//    @TargetApi(24)
+    public List<Category> getCategories() {
+//         return categories.stream()
+//                 .map(Category::getTitle)
+//                 .collect(Collectors.toList());
+        return categories;
     }
 
     public void setCategories(List<Category> categories) {
@@ -228,6 +224,14 @@ public class Restaurant {
 
     public void setDistance(Double distance) {
         this.distance = distance;
+    }
+
+    public String getPushId() {
+        return pushId;
+    }
+
+    public void setPushId(String pushId) {
+        this.pushId = pushId;
     }
 
 }
